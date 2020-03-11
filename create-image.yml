@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: delete image
+      command: docker rmi hello-world-image
+      ignore_errors: yes
+    - name: create image
+      command: docker build -t hello-world-image .
+      args:
+        chdir: /home/ansadmin
+    - name: tag image
+      command: docker tag hello-world-image ssuresh446/hello-world-image 
+    - name: pushing into dockerhub
+      command: docker push ssuresh446/hello-world-image
