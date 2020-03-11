@@ -1,0 +1,2 @@
+localhost     # ansible-server 
+172.31.28.62  #docker-server ip
