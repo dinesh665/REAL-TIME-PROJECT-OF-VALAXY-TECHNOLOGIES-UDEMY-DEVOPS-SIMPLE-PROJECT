@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: stop container
+      command: docker stop hello-world-container
+      ignore_errors: yes
+    - name: delete container
+      command: docker rm hello-world-container
+      ignore_errors: yes
+    - name: pull docker image from hub
+      command: docker pull ssuresh446/hello-world-image
+    - name: create container
+      command: docker run -d --name hello-world-containier -p 8080:8080 ssuresh446/hello-world-image
